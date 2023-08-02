@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 import com.example.myapplication.core.data.api.response.item.HistoryItem
 import com.example.myapplication.core.data.api.response.item.NotifikasiItem
 import com.example.myapplication.databinding.ListHistoryBinding
@@ -33,6 +34,15 @@ class NotifikasiAdapter : RecyclerView.Adapter<NotifikasiAdapter.LibraryViewHold
             }
             with(binding) {
                 tvNotif.text = NotifikasiItem.notif
+                if (NotifikasiItem.isRead) {
+                    // Tampilan jika notifikasi telah dibaca
+                    root.setBackgroundResource(R.color.read_notification_background)
+                    // Atur ikon, teks, atau warna sesuai kebutuhan
+                } else {
+                    // Tampilan jika notifikasi belum dibaca
+                    root.setBackgroundResource(R.color.unread_notification_background)
+                    // Atur ikon, teks, atau warna sesuai kebutuhan
+                }
             }
 
         }

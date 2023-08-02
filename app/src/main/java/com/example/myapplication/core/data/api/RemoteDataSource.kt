@@ -47,4 +47,8 @@ class RemoteDataSource (private val apiService : ApiService){
 
     suspend fun notifikasi(token: String) = apiService.notifikasi(token)
 
+    suspend fun countnotif(token: String) = apiService.countnotif(token)
+
+    suspend fun upnotif(token: String, id: Int) = apiService.upnotif(token, id)
+
 }

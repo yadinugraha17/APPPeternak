@@ -1,6 +1,5 @@
 package com.example.myapplication.core.data.api.network
 
-import android.provider.ContactsContract.Data
 import com.example.myapplication.core.data.api.request.FindRequest
 import com.example.myapplication.core.data.api.request.InseminasiRequest
 import com.example.myapplication.core.data.api.request.LoginRequest
@@ -12,6 +11,7 @@ import com.example.myapplication.core.data.api.response.item.DistrictItem
 import com.example.myapplication.core.data.api.response.item.FindItem
 import com.example.myapplication.core.data.api.response.item.HistoryItem
 import com.example.myapplication.core.data.api.response.item.InseminasiItem
+import com.example.myapplication.core.data.api.response.item.NotifItem
 import com.example.myapplication.core.data.api.response.item.NotifikasiItem
 import com.example.myapplication.core.data.api.response.item.PendItem
 import com.example.myapplication.core.data.api.response.item.ProfileItem
@@ -29,6 +29,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Multipart
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Part
 import retrofit2.http.Path
 
@@ -68,37 +69,56 @@ interface ApiService {
 
     @POST("ternak")
     @Multipart
-    suspend fun addternak(@Header("Authorization") token: String,
-                          @Part partFile : MultipartBody.Part,
-                          @Part("nama_ternak") namaternak: RequestBody,
-                          @Part("status_melahirkan") statusmelahirkan: RequestBody,
-                          @Part("umur") umur: RequestBody,
-                          @Part("rumpun") rumpun: RequestBody,
-                          @Part("jenis_kelamin") jenis_kelamin: RequestBody,): Response<DataResponse<List<TernakItem>>>
+    suspend fun addternak(
+        @Header("Authorization") token: String,
+        @Part partFile: MultipartBody.Part,
+        @Part("nama_ternak") namaternak: RequestBody,
+        @Part("status_melahirkan") statusmelahirkan: RequestBody,
+        @Part("umur") umur: RequestBody,
+        @Part("rumpun") rumpun: RequestBody,
+        @Part("jenis_kelamin") jenis_kelamin: RequestBody,
+    ): Response<DataResponse<List<TernakItem>>>
 
     @POST("ternak/{id}")
     @Multipart
-    suspend fun editternak(@Header("Authorization") token: String,
-                          @Part partFile : MultipartBody.Part?,
-                          @Path("id") id: Int,
-                          @Part("nama_ternak") namaternak: RequestBody,
-                          @Part("status_melahirkan") statusmelahirkan: RequestBody,
-                          @Part("umur") umur: RequestBody,
-                          @Part("rumpun") rumpun: RequestBody,
-                          @Part("jenis_kelamin") jenis_kelamin: RequestBody,): Response<DataResponse<TernakItem>>
+    suspend fun editternak(
+        @Header("Authorization") token: String,
+        @Part partFile: MultipartBody.Part?,
+        @Path("id") id: Int,
+        @Part("nama_ternak") namaternak: RequestBody,
+        @Part("status_melahirkan") statusmelahirkan: RequestBody,
+        @Part("umur") umur: RequestBody,
+        @Part("rumpun") rumpun: RequestBody,
+        @Part("jenis_kelamin") jenis_kelamin: RequestBody,
+    ): Response<DataResponse<TernakItem>>
 
     @DELETE("delete-ternak/{id}")
-    suspend fun delternak(@Header("Authorization") token: String, @Path("id") id: Int): Response<DataResponse<List<TernakItem>>>
+    suspend fun delternak(
+        @Header("Authorization") token: String,
+        @Path("id") id: Int
+    ): Response<DataResponse<List<TernakItem>>>
 
     @POST("find/insiminator")
-    suspend fun findib(@Header("Authorization") token: String, @Body findRequest: FindRequest): Response<DataResponse<List<FindItem>>>
+    suspend fun findib(
+        @Header("Authorization") token: String,
+        @Body findRequest: FindRequest
+    ): Response<DataResponse<List<FindItem>>>
 
     @POST("insiminasi")
-    suspend fun inseminasi(@Header("Authorization") token: String, @Body inseminasiRequest: InseminasiRequest): Response<DataResponse<List<InseminasiItem>>>
+    suspend fun inseminasi(
+        @Header("Authorization") token: String,
+        @Body inseminasiRequest: InseminasiRequest
+    ): Response<DataResponse<List<InseminasiItem>>>
 
     @GET("riwayat/pengajuan/peternak")
-    suspend fun history(@Header("Authorization") token: String ): Response<DataResponse<List<HistoryItem>>>
+    suspend fun history(@Header("Authorization") token: String): Response<DataResponse<List<HistoryItem>>>
+
+    @GET("jumlah/notifikasi")
+    suspend fun countnotif(@Header("Authorization") token: String): Response<NotifItem>
 
     @GET("notifikasi")
     suspend fun notifikasi(@Header("Authorization") token: String): Response<DataResponse<List<NotifikasiItem>>>
+
+    @PUT("update/notifikasi/{id}")
+    suspend fun upnotif(@Header("Authorization") token: String, @Path("id") id: Int): Response<NotifItem>
 }

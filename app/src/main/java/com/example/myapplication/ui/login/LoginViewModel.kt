@@ -42,4 +42,6 @@ class LoginViewModel (private val coreRepository: CoreRepository):ViewModel() {
     fun inseminasi(token: String, data: InseminasiRequest)=coreRepository.inseminasi(token,data).asLiveData()
     fun history(token: String)=coreRepository.history(token).asLiveData()
     fun notifikasi(token: String)=coreRepository.notifikasi(token).asLiveData()
+    fun countnotif(token: String)=coreRepository.countnotif(token).asLiveData()
+    fun upnotif(token: String, id: Int)=coreRepository.upnotif(token, id).asLiveData()
 }

@@ -8,4 +8,6 @@
     <color name="red">#F81414</color>
     <color name="grey">#CFCFCF</color>
     <color name="my_menu_unselected_color">#424242</color>
+    <color name="unread_notification_background">#807F7F</color>
+    <color name="read_notification_background">#CAC9C9</color>
 </resources>

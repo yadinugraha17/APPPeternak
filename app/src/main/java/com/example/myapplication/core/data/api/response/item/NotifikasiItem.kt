@@ -7,5 +7,6 @@ data class NotifikasiItem(
     val insiminasi : Int,
     val status : String,
     val create_at : String,
-    val update_at : String
+    val update_at : String,
+    var isRead : Boolean
 )
