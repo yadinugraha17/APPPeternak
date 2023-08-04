@@ -1,0 +1,14 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <rotate
+            android:fromDegrees="0"
+            android:toDegrees="1080">
+            <shape
+                android:shape="ring"
+                android:innerRadiusRatio="3"
+                android:thicknessRatio="1">
+                <solid android:color="@color/primary"/>
+            </shape>
+        </rotate>
+    </item>
+</layer-list>

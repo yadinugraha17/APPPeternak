@@ -35,7 +35,6 @@ class HomeActivity : BaseActivity() {
             false
         )
 
-
         binding?.menu?.setItemSelected(R.id.home)
         openMainFragment()
         binding?.menu?.setOnItemSelectedListener {
@@ -61,6 +60,9 @@ class HomeActivity : BaseActivity() {
 
     }
 
+    fun refreshActivityContent() {
+        countnotif()
+    }
     private fun openMainFragment() {
         val homeFragment = HomeFragment()
         val transaction = supportFragmentManager.beginTransaction()

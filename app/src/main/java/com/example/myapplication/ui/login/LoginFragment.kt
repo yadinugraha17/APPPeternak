@@ -61,7 +61,7 @@ class LoginFragment : BaseFragment() {
         val pass = binding?.pass?.text
         if (hp.isNullOrEmpty() || pass.isNullOrEmpty()) {
             // Tampilkan pesan bahwa nomor HP dan password harus diisi
-            Toast.makeText(requireContext(), "Nomor HP dan password harus diisi", Toast.LENGTH_SHORT).show()
+            toastError("Nomor HP dan password harus diisi")
             return
         }
         val data = LoginRequest(hp.toString(), pass.toString())

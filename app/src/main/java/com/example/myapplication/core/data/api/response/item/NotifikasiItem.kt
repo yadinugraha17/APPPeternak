@@ -1,5 +1,7 @@
 package com.example.myapplication.core.data.api.response.item
 
+import com.google.gson.annotations.SerializedName
+
 data class NotifikasiItem(
     val id : Int,
     val notif : String,
@@ -8,5 +10,6 @@ data class NotifikasiItem(
     val status : String,
     val create_at : String,
     val update_at : String,
-    var isRead : Boolean
+    @field:SerializedName("status_read")
+    var isRead : String
 )

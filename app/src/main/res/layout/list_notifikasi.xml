@@ -8,12 +8,11 @@
     android:layout_marginStart="@dimen/_8sdp"
     android:layout_marginEnd="@dimen/_8sdp"
     android:layout_marginTop="@dimen/_4sdp"
-    app:cardBackgroundColor="@color/unread_notification_background"
     app:cardCornerRadius="@dimen/_5sdp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="@color/read_notification_background"
+        android:id="@+id/cl_notif"
         android:layout_height="wrap_content"
         android:padding="@dimen/_5sdp">
 

@@ -1,7 +1,9 @@
 package com.example.myapplication.core.adapter
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
@@ -13,7 +15,6 @@ import com.example.myapplication.databinding.ListNotifikasiBinding
 class NotifikasiAdapter : RecyclerView.Adapter<NotifikasiAdapter.LibraryViewHolder>() {
     private var listGovernmentEffort = ArrayList<NotifikasiItem>()
     private var onItemClickCallback: OnItemClickCallback? = null
-
     @SuppressLint("NotifyDataSetChanged")
     fun setData(newTernakItem: List<NotifikasiItem>?) {
         if (newTernakItem == null) return
@@ -23,24 +24,29 @@ class NotifikasiAdapter : RecyclerView.Adapter<NotifikasiAdapter.LibraryViewHold
     }
 
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
+
         this.onItemClickCallback = onItemClickCallback
     }
 
     inner class LibraryViewHolder(private val binding: ListNotifikasiBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(NotifikasiItem: NotifikasiItem) {
+        fun bind(notifikasiItem: NotifikasiItem) {
             binding.root.setOnClickListener {
-                onItemClickCallback?.onItemClicked(NotifikasiItem)
+
+                onItemClickCallback?.onItemClicked(notifikasiItem)
             }
             with(binding) {
-                tvNotif.text = NotifikasiItem.notif
-                if (NotifikasiItem.isRead) {
+                tvNotif.text = notifikasiItem.notif
+                if (notifikasiItem.isRead == "1") {
                     // Tampilan jika notifikasi telah dibaca
-                    root.setBackgroundResource(R.color.read_notification_background)
+//                    cardview.visibility = View.GONE
+                    clNotif.setBackgroundResource(R.color.read_notification_background)
                     // Atur ikon, teks, atau warna sesuai kebutuhan
                 } else {
                     // Tampilan jika notifikasi belum dibaca
-                    root.setBackgroundResource(R.color.unread_notification_background)
+//                    cardview.visibility = View.VISIBLE
+                    clNotif.setBackgroundResource(R.color.primary)
+
                     // Atur ikon, teks, atau warna sesuai kebutuhan
                 }
             }
