@@ -102,7 +102,8 @@ class MengajukanIbActivity : BaseActivity(), TimePickerFragment.DialogTimeListen
             when (it.state) {
                 State.SUCCESS -> {
                     val response = it.data
-                    response?.forEach { ternak ->
+                    val betinaTernak = response?.filter { it.jenis_kelamin == "Betina"}
+                     betinaTernak?.forEach { ternak ->
                         arrayString.add(ternak.nama_ternak)
                     }
                     val arrayAdapter = ArrayAdapter<String>(
@@ -124,7 +125,7 @@ class MengajukanIbActivity : BaseActivity(), TimePickerFragment.DialogTimeListen
                                 id: Long
                             ) {
                                 if (position != 0) {
-                                    val ternak = response?.get(position - 1)
+                                    val ternak = betinaTernak?.get(position - 1)
                                     binding?.etTernak?.setText(ternak?.nama_ternak)
                                     ternakid = ternak?.id ?: 0
                                 }

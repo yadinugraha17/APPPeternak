@@ -1,7 +1,6 @@
 package com.example.myapplication.ui.ternak
 
 import android.app.Activity
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -9,11 +8,9 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.myapplication.R
 import com.example.myapplication.core.data.api.network.State
 import com.example.myapplication.databinding.ActivityAddTernakBinding
-import com.example.myapplication.databinding.ActivityEditTernakBinding
 import com.example.myapplication.ui.login.LoginActivity
 import com.example.myapplication.ui.login.LoginViewModel
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -40,10 +37,14 @@ class AddTernakActivity : BaseActivity() {
         root = binding?.root
         setContentView(root)
         getRumpun()
+        binding?.belumlahir?.isChecked = true
         binding?.upImg?.setOnClickListener {
             ImagePicker.with(this)
                 .compress(1024)         //Final image size will be less than 1 MB(Optional)
-                .maxResultSize(1080, 1080)  //Final image resolution will be less than 1080 x 1080(Optional)
+                .maxResultSize(
+                    1080,
+                    1080
+                )  //Final image resolution will be less than 1080 x 1080(Optional)
                 .createIntent { intent ->
                     startForProfileImageResult.launch(intent)
                 }
@@ -51,7 +52,41 @@ class AddTernakActivity : BaseActivity() {
         binding?.tambah?.setOnClickListener {
             ternak()
         }
+
+        // Buat array adapter dengan opsi Jantan dan Betina
+        val jenisKelaminOptions = arrayOf("Pilih Jenis Kelamin", "Jantan", "Betina")
+        val arrayAdapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, jenisKelaminOptions)
+
+        // Atur tata letak dropdown
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding?.jenisKelamin?.setOnClickListener {
+            binding?.spJeniskelamin?.performClick()
+        }
+        // Terapkan adapter pada spinner
+        binding?.spJeniskelamin?.adapter = arrayAdapter
+        binding?.spJeniskelamin?.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    if (position != 0) {
+                        val jenisKelamin = jenisKelaminOptions[position]
+                        binding?.jenisKelamin?.setText(jenisKelamin)
+
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+
+            }
     }
+
     private fun getRumpun() {
         val arrayString = ArrayList<String>()
         arrayString.add("Rumpun")
@@ -100,7 +135,6 @@ class AddTernakActivity : BaseActivity() {
     }
 
 
-
     private val startForProfileImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val resultCode = result.resultCode
@@ -120,7 +154,8 @@ class AddTernakActivity : BaseActivity() {
                 Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
             }
         }
-    private fun ternak(){
+
+    private fun ternak() {
         val nama = binding?.nameTernak?.text
         if (nama.isNullOrEmpty()) {
             // nama harus di isi
@@ -135,32 +170,39 @@ class AddTernakActivity : BaseActivity() {
         }
         if (rumpunid == 0) {
             // jk harus di isi
-            Toast.makeText(this@AddTernakActivity, "Jenis Ternak harus di Isi", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@AddTernakActivity, "Jenis Ternak harus di Isi", Toast.LENGTH_SHORT)
+                .show()
             return
         }
         val jk = binding?.jenisKelamin?.text
-        if (jk.isNullOrEmpty()) {
-            // jk harus di isi
-            Toast.makeText(this, "Jenis Kelamin Ternak harus di Isi", Toast.LENGTH_SHORT).show()
-            return
-        }
+
         var status = ""
-        binding?.apply{
-            status = if (lahir.isChecked){
+        binding?.apply {
+            status = if (lahir.isActivated) {
                 "1"
-            }else{
+            } else {
                 "0"
             }
-        if (status.isBlank()) {
-            // jk harus di isi
-            Toast.makeText(this@AddTernakActivity, "Jenis Kelamin Ternak harus di Isi", Toast.LENGTH_SHORT).show()
-            return
+            if (status.isBlank()) {
+                // jk harus di isi
+                Toast.makeText(
+                    this@AddTernakActivity,
+                    "Jenis Kelamin Ternak harus di Isi",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return
+            }
         }
-        }
-//        toastSuccess(status)
-        viewModel.addternak("Bearer ${LoginActivity.TOKEN_KEY}",
-            file.toMultipartBody("photo")!!, nama.toString().toRequestBody(), status.toRequestBody(), umur.toString().toRequestBody(), rumpunid.toString().toRequestBody(), jk.toString().toRequestBody())
-            .observe(this){
+        viewModel.addternak(
+            "Bearer ${LoginActivity.TOKEN_KEY}",
+            file.toMultipartBody("photo")!!,
+            nama.toString().toRequestBody(),
+            status.toRequestBody(),
+            umur.toString().toRequestBody(),
+            rumpunid.toString().toRequestBody(),
+            jk.toString().toRequestBody()
+        )
+            .observe(this) {
                 when (it.state) {
                     State.SUCCESS -> {
                         progress.dismiss()
@@ -168,6 +210,7 @@ class AddTernakActivity : BaseActivity() {
                         onBackPressed()
 
                     }
+
                     State.LOADING -> {
                         progress.show()
                     }
