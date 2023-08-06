@@ -89,7 +89,7 @@ class PengajuanActivity : BaseActivity() {
     private fun findib() {
         if (rumpunid == 0 ) {
             // Tampilkan pesan bahwa waktu dan waktu harus diisi
-            Toast.makeText(this, "Silahkan mencari jenis rumpun", Toast.LENGTH_SHORT).show()
+            toastError("Pilih Jenis Ternak Terlebih Dahulu")
             return
         }
         val data = FindRequest(rumpunid)

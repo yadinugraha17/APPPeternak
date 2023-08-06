@@ -152,7 +152,7 @@ class MengajukanIbActivity : BaseActivity(), TimePickerFragment.DialogTimeListen
 
         if (ternakid == 0 || waktu.isNullOrEmpty() || time.isNullOrEmpty()) {
             // Tampilkan pesan bahwa waktu dan waktu harus diisi
-            Toast.makeText(this, "Semua data harus diisi", Toast.LENGTH_SHORT).show()
+            toastError("Semua data harus di isi")
             return
         }
 
