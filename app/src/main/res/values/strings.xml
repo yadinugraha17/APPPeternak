@@ -82,6 +82,7 @@
     <string name="text_notifikasi">Notifikasi</string>
     <string name="text_tglib">Tanggal Inseminasi</string>
     <string name="text_tglbirahi">Tanggal Birahi</string>
+    <string name="text_MI">Management Insemination</string>
 
     <string-array name="Provinsi">
         <item>Sulawesi Selatan</item>
