@@ -159,14 +159,44 @@ class EditTernakActivity : BaseActivity() {
 
     private fun ternak() {
         val nama = binding?.nameTernak?.text
+        if (nama.isNullOrEmpty()) {
+            // nama harus di isi
+            toastError( "Nama Ternak harus di Isi")
+            return
+        }
         val umur = binding?.umur?.text
+        if (umur.isNullOrEmpty()) {
+            // umur harus di isi
+            toastError( "Umur Ternak harus di Isi")
+            return
+        }
+        if (rumpunid == 0) {
+            // jk harus di isi
+            Toast.makeText(this@EditTernakActivity, "Jenis Ternak harus di Isi", Toast.LENGTH_SHORT)
+                .show()
+            return
+        }
         val jk = binding?.jenisKelamin?.text
+        if (umur.isNullOrEmpty()) {
+            // umur harus di isi
+            toastError("Silahkan pilih jenis kelamin ternak")
+            return
+        }
         var status = ""
         binding?.apply {
-            status = if (lahir.isChecked) {
+            status = if (lahir.isActivated) {
                 "1"
             } else {
                 "0"
+            }
+            if (status.isBlank()) {
+                // jk harus di isi
+                Toast.makeText(
+                    this@EditTernakActivity,
+                    "Silahkan pilih status lahir ternak",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return
             }
         }
         if (file != null) {

@@ -33,7 +33,11 @@ class DetailHistoryActivity : BaseActivity() {
         binding?.tvJenisSemen?.text = ternak.rumpun.nama
         binding?.tvTglBirahi?.text = ternak.waktu_birahi
         binding?.tvJamBirahi?.text = ternak.jam_birahi
-        binding?.tvTglIb?.text = ternak.tgl_ib
+        if (ternak.tgl_ib != null) {
+            binding?.tvTglIb?.text = ternak.tgl_ib
+        } else {
+            binding?.tvTglIb?.text = "Belum Diinseminasi"
+        }
         if (ternak.status_kebuntingan == "0") {
             binding?.tvBunting?.text = "Belum Bunting"
         } else if (ternak.status_kebuntingan == "1") {

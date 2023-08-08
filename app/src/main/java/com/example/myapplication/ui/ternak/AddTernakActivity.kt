@@ -159,13 +159,13 @@ class AddTernakActivity : BaseActivity() {
         val nama = binding?.nameTernak?.text
         if (nama.isNullOrEmpty()) {
             // nama harus di isi
-            Toast.makeText(this, "Nama Ternak harus di Isi", Toast.LENGTH_SHORT).show()
+            toastError( "Nama Ternak harus di Isi")
             return
         }
         val umur = binding?.umur?.text
         if (umur.isNullOrEmpty()) {
             // umur harus di isi
-            Toast.makeText(this, "Umur Ternak harus di Isi", Toast.LENGTH_SHORT).show()
+            toastError( "Umur Ternak harus di Isi")
             return
         }
         if (rumpunid == 0) {
@@ -175,6 +175,11 @@ class AddTernakActivity : BaseActivity() {
             return
         }
         val jk = binding?.jenisKelamin?.text
+        if (umur.isNullOrEmpty()) {
+            // umur harus di isi
+            toastError("Silahkan pilih jenis kelamin ternak")
+            return
+        }
 
         var status = ""
         binding?.apply {
@@ -187,7 +192,7 @@ class AddTernakActivity : BaseActivity() {
                 // jk harus di isi
                 Toast.makeText(
                     this@AddTernakActivity,
-                    "Jenis Kelamin Ternak harus di Isi",
+                    "Silahkan pilih status lahir ternak",
                     Toast.LENGTH_SHORT
                 ).show()
                 return
