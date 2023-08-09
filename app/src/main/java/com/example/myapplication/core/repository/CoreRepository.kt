@@ -5,6 +5,7 @@ import com.example.myapplication.core.data.api.network.Resource
 import com.example.myapplication.core.data.api.request.FindRequest
 import com.example.myapplication.core.data.api.request.InseminasiRequest
 import com.example.myapplication.core.data.api.request.LoginRequest
+import com.example.myapplication.core.data.api.request.ProfileRequest
 import com.example.myapplication.core.data.api.request.RegisterRequest
 import com.example.myapplication.core.data.api.response.DataResponse
 import com.example.myapplication.core.data.api.response.LoginRespon
@@ -191,10 +192,10 @@ class CoreRepository(private val remoteDataSource: RemoteDataSource) {
         }
     }
 
-    fun editprofil(token: String) = flow {
+    fun editprofil(token: String, data: ProfileRequest) = flow {
         emit(Resource.loading(null))
         try {
-            remoteDataSource.profile(token).let {
+            remoteDataSource.editprofil(token, data).let {
                 if (it.isSuccessful) {
                     val body = it.body()
                     val user = body?.data

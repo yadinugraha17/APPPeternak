@@ -3,6 +3,7 @@ package com.example.myapplication.core.data.api.network
 import com.example.myapplication.core.data.api.request.FindRequest
 import com.example.myapplication.core.data.api.request.InseminasiRequest
 import com.example.myapplication.core.data.api.request.LoginRequest
+import com.example.myapplication.core.data.api.request.ProfileRequest
 import com.example.myapplication.core.data.api.request.RegisterRequest
 import com.example.myapplication.core.data.api.response.DataResponse
 import com.example.myapplication.core.data.api.response.LoginRespon
@@ -58,8 +59,8 @@ interface ApiService {
     @GET("detail-peternak")
     suspend fun profile(@Header("Authorization") token: String): Response<DataResponse<List<ProfileItem>>>
 
-    @POST("detail-peternak")
-    suspend fun editprofile(@Header("Authorization") token: String): Response<DataResponse<List<ProfileItem>>>
+    @POST("update/peternak")
+    suspend fun editprofile(@Header("Authorization") token: String, profile: ProfileRequest): Response<DataResponse<List<ProfileItem>>>
 
     @GET("rumpun")
     suspend fun rumpun(): Response<DataResponse<List<RumpunItem>>>

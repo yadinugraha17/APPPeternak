@@ -4,6 +4,7 @@ import com.example.myapplication.core.data.api.network.ApiService
 import com.example.myapplication.core.data.api.request.FindRequest
 import com.example.myapplication.core.data.api.request.InseminasiRequest
 import com.example.myapplication.core.data.api.request.LoginRequest
+import com.example.myapplication.core.data.api.request.ProfileRequest
 import com.example.myapplication.core.data.api.request.RegisterRequest
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -17,7 +18,7 @@ class RemoteDataSource (private val apiService : ApiService){
     suspend fun village (id:Int) = apiService.village(id)
     suspend fun study () = apiService.study()
     suspend fun profile (token:String) = apiService.profile(token)
-    suspend fun editprofil(token: String) = apiService.editprofile(token)
+    suspend fun editprofil(token: String, data: ProfileRequest) = apiService.editprofile(token, data)
     suspend fun rumpun () = apiService.rumpun()
     suspend fun ternak (token: String) = apiService.ternak(token)
     suspend fun addternak (token: String,

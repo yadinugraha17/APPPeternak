@@ -38,9 +38,9 @@
                 android:gravity="center_horizontal"
                 android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="@dimen/_120sdp"
-                    android:layout_height="@dimen/_120sdp"
-                    android:src="@drawable/baseline_person_30"/>
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:src="@drawable/peternak"/>
             </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -101,17 +101,24 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_5sdp"
                 app:startIconDrawable="@drawable/baseline_menu_book_24"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_study"
+                <AutoCompleteTextView
+                    android:id="@+id/et_pend"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:hint="@string/text_pend" />
+                    android:layout_height="match_parent"
+                    android:inputType="none"
+                    android:hint="@string/text_pend"/>
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/sp_pend"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/white"
+                android:layout_height="0dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -138,8 +145,15 @@
                     android:id="@+id/et_prov"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="none"
                     android:hint="@string/text_prov"/>
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/sp_prov"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/white"
+                android:layout_height="0dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -152,8 +166,15 @@
                     android:id="@+id/et_regency"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="none"
                     android:hint="@string/text_kab"/>
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/sp_regency"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/white"
+                android:layout_height="0dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -166,8 +187,15 @@
                     android:id="@+id/et_district"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="none"
                     android:hint="@string/text_kec"/>
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/sp_district"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/white"
+                android:layout_height="0dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -180,13 +208,22 @@
                     android:id="@+id/et_village"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:inputType="none"
                     android:hint="@string/text_desa"/>
             </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/sp_village"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/white"
+                android:layout_height="0dp"/>
+
             <Button
-                android:layout_width="wrap_content"
+                android:id="@+id/bt_save"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_margin="@dimen/_10sdp"
                 android:text="@string/text_save"/>
 
         </LinearLayout>

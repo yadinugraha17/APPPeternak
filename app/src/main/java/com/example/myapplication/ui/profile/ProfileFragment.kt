@@ -14,6 +14,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.MainActivity
 import com.example.myapplication.core.data.api.network.State
+import com.example.myapplication.core.data.api.response.item.ProfileItem
+import com.example.myapplication.core.data.api.response.item.TernakItem
 import com.example.myapplication.core.session.SessionRepository
 import com.example.myapplication.core.session.SessionViewModel
 import com.example.myapplication.core.utils.ViewModelUserFactory
@@ -21,8 +23,11 @@ import com.example.myapplication.databinding.FragmentProfileBinding
 import com.example.myapplication.ui.login.LoginActivity
 import com.example.myapplication.ui.login.LoginActivity.Companion.TOKEN_KEY
 import com.example.myapplication.ui.login.LoginViewModel
+import com.example.myapplication.ui.ternak.EditTernakActivity
 import com.example.myapplication.ui.ternak.TernakActivity
+import com.google.gson.Gson
 import com.inyongtisto.myhelper.base.BaseFragment
+import com.inyongtisto.myhelper.extension.toJson
 import com.inyongtisto.myhelper.extension.toastError
 import com.inyongtisto.myhelper.extension.toastSuccess
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -56,6 +61,7 @@ class ProfileFragment : BaseFragment() {
             logout()
         }
         binding?.btEdit?.setOnClickListener {
+            val json = arguments?.getString("profil")
             val intent = Intent (requireContext(), EditProfileActivity::class.java)
             startActivity(intent)
         }
