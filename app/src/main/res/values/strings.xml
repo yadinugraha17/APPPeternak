@@ -61,7 +61,7 @@
     <string name="text_kab">Kabupaten</string>
     <string name="text_kamp">Kampung</string>
     <string name="text_EditProfile">Edit Profile</string>
-    <string name="text_save">Save</string>
+    <string name="text_save">Simpan</string>
     <string name="text_daerah">Daerah</string>
     <string name="text_desa">Desa</string>
     <string name="text_kec">Kecamatan</string>
@@ -83,6 +83,7 @@
     <string name="text_tglib">Tanggal Inseminasi</string>
     <string name="text_tglbirahi">Tanggal Birahi</string>
     <string name="text_MI">Management Insemination</string>
+    <string name="text_peternak">Peternak</string>
 
     <string-array name="Provinsi">
         <item>Sulawesi Selatan</item>

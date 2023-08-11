@@ -59,8 +59,8 @@ interface ApiService {
     @GET("detail-peternak")
     suspend fun profile(@Header("Authorization") token: String): Response<DataResponse<List<ProfileItem>>>
 
-    @POST("update/peternak")
-    suspend fun editprofile(@Header("Authorization") token: String, profile: ProfileRequest): Response<DataResponse<List<ProfileItem>>>
+    @PUT("update/peternak")
+    suspend fun editprofile(@Header("Authorization") token: String, @Body profile: ProfileRequest): Response<DataResponse<List<ProfileItem>>>
 
     @GET("rumpun")
     suspend fun rumpun(): Response<DataResponse<List<RumpunItem>>>

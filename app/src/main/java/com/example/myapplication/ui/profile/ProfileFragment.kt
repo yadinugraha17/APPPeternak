@@ -3,19 +3,21 @@ package com.example.myapplication.ui.profile
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.PopupWindow
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
-import com.example.myapplication.MainActivity
+import com.example.myapplication.R
 import com.example.myapplication.core.data.api.network.State
-import com.example.myapplication.core.data.api.response.item.ProfileItem
-import com.example.myapplication.core.data.api.response.item.TernakItem
 import com.example.myapplication.core.session.SessionRepository
 import com.example.myapplication.core.session.SessionViewModel
 import com.example.myapplication.core.utils.ViewModelUserFactory
@@ -23,11 +25,7 @@ import com.example.myapplication.databinding.FragmentProfileBinding
 import com.example.myapplication.ui.login.LoginActivity
 import com.example.myapplication.ui.login.LoginActivity.Companion.TOKEN_KEY
 import com.example.myapplication.ui.login.LoginViewModel
-import com.example.myapplication.ui.ternak.EditTernakActivity
-import com.example.myapplication.ui.ternak.TernakActivity
-import com.google.gson.Gson
 import com.inyongtisto.myhelper.base.BaseFragment
-import com.inyongtisto.myhelper.extension.toJson
 import com.inyongtisto.myhelper.extension.toastError
 import com.inyongtisto.myhelper.extension.toastSuccess
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -40,6 +38,7 @@ class ProfileFragment : BaseFragment() {
     private lateinit var sessionViewModel: SessionViewModel
     private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("settings")
 
+    private lateinit var popupWindow: PopupWindow
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,20 +51,37 @@ class ProfileFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        profile()
         sessionViewModel = ViewModelProvider(
             this,
             ViewModelUserFactory(SessionRepository.getInstance(requireContext().dataStore))
         )[SessionViewModel::class.java]
-        binding?.btLogout?.setOnClickListener {
+
+        val inflater = LayoutInflater.from(requireContext())
+        val popupView = inflater.inflate(R.layout.custom_popup_menu, null)
+        popupWindow = PopupWindow(
+            popupView,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+        )
+        val backgroundDrawable = ColorDrawable(Color.TRANSPARENT)
+        popupWindow.setBackgroundDrawable(backgroundDrawable)
+        popupWindow.isOutsideTouchable = true
+
+        val btnEdit = popupView.findViewById<LinearLayout>(R.id.btn_edit)
+        val btnLogout = popupView.findViewById<LinearLayout>(R.id.btn_logout)
+
+        btnLogout.setOnClickListener {
             logout()
         }
-        binding?.btEdit?.setOnClickListener {
-            val json = arguments?.getString("profil")
-            val intent = Intent (requireContext(), EditProfileActivity::class.java)
+        btnEdit.setOnClickListener {
+            val intent = Intent(requireContext(), EditProfileActivity::class.java)
             startActivity(intent)
         }
+        binding?.menu?.setOnClickListener {
+            popupWindow.showAsDropDown(binding?.menu)
+        }
     }
+
 
     private fun profile() {
         viewModel.profile("Bearer $TOKEN_KEY")
@@ -98,7 +114,7 @@ class ProfileFragment : BaseFragment() {
             }
     }
 
-    private fun logout(){
+    private fun logout() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setPositiveButton("Ya") { _, _ ->
             sessionViewModel.logout()
@@ -106,14 +122,22 @@ class ProfileFragment : BaseFragment() {
             val intent = Intent(requireActivity(), LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-            requireActivity().supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            requireActivity().supportFragmentManager.popBackStack(
+                null,
+                FragmentManager.POP_BACK_STACK_INCLUSIVE
+            )
             requireActivity().finishAndRemoveTask()
         }
 
         builder.setNegativeButton("Batal") { _, _ -> }
         builder.setTitle("Anda yakin akan keluar? ")
-        builder.setMessage("Klik Ya jika ingin keluar!!")
+        builder.setMessage("Klik 'Ya' jika ingin keluar!!")
         builder.create().show()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        profile()
     }
 }
