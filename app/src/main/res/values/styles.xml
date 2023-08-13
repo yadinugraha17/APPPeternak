@@ -18,5 +18,11 @@
         </item>
         <item name="android:textSize">@dimen/_20ssp</item>
     </style>
+    <style name="poppins_semibold_style3">
+        <item name="android:fontFamily">
+            @font/poppins_semibold
+        </item>
+        <item name="android:textSize">@dimen/_16ssp</item>
+    </style>
 
 </resources>

@@ -84,6 +84,8 @@
     <string name="text_tglbirahi">Tanggal Birahi</string>
     <string name="text_MI">Management Insemination</string>
     <string name="text_peternak">Peternak</string>
+    <string name="text_book">Buku Peternak</string>
+    <string name="text_judul_buku">Judul Buku</string>
 
     <string-array name="Provinsi">
         <item>Sulawesi Selatan</item>

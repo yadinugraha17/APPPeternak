@@ -8,6 +8,7 @@ import com.example.myapplication.core.data.api.request.RegisterRequest
 import com.example.myapplication.core.data.api.response.DataResponse
 import com.example.myapplication.core.data.api.response.LoginRespon
 import com.example.myapplication.core.data.api.response.RegisterResponse
+import com.example.myapplication.core.data.api.response.item.BookItem
 import com.example.myapplication.core.data.api.response.item.DistrictItem
 import com.example.myapplication.core.data.api.response.item.FindItem
 import com.example.myapplication.core.data.api.response.item.HistoryItem
@@ -122,4 +123,7 @@ interface ApiService {
 
     @PUT("update/notifikasi/{id}")
     suspend fun upnotif(@Header("Authorization") token: String, @Path("id") id: Int): Response<NotifItem>
+
+    @GET("book")
+    suspend fun book(@Header("Authorization") token: String): Response<DataResponse<List<BookItem>>>
 }
