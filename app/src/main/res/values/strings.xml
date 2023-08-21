@@ -86,6 +86,8 @@
     <string name="text_peternak">Peternak</string>
     <string name="text_book">Buku Peternak</string>
     <string name="text_judul_buku">Judul Buku</string>
+    <string name="text_pengajuanib">Pengajuan\nInseminasi</string>
+    <string name="text_bookinseminasi">Buku\nPeternakan</string>
 
     <string-array name="Provinsi">
         <item>Sulawesi Selatan</item>

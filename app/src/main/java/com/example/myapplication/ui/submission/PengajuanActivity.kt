@@ -123,11 +123,10 @@ class PengajuanActivity : BaseActivity() {
                                 intent.putExtra("rumpun", rumpunname)
                                 intent.putExtra("rumpunId", rumpunid)
                                 startActivity(intent)
-
+                                finish()
                             }
 
                         }))
-
                     }
 
                     State.LOADING -> {

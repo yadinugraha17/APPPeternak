@@ -217,6 +217,7 @@ class EditTernakActivity : BaseActivity() {
                             progress.dismiss()
                             toastSuccess("Ternak Berhasil DiUbah")
                             onBackPressed()
+                            finish()
 
                         }
 

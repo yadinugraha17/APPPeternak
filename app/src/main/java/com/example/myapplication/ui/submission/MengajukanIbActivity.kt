@@ -178,6 +178,7 @@ class MengajukanIbActivity : BaseActivity(), TimePickerFragment.DialogTimeListen
                         toastSuccess("Pengajuan Berhasil!")
                         val intent = Intent(this@MengajukanIbActivity, HistoryActivity::class.java)
                         startActivity(intent)
+                        finish()
                     }
 
                     State.LOADING -> {
@@ -189,6 +190,7 @@ class MengajukanIbActivity : BaseActivity(), TimePickerFragment.DialogTimeListen
                         toastSuccess("Pengajuan Berhasil!")
                         val intent = Intent(this@MengajukanIbActivity, HistoryActivity::class.java)
                         startActivity(intent)
+                        finish()
                     }
                 }
             }

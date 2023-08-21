@@ -213,6 +213,7 @@ class AddTernakActivity : BaseActivity() {
                         progress.dismiss()
                         toastSuccess("Ternak Berhasil DiTambahkan")
                         onBackPressed()
+                        finish()
 
                     }
 
