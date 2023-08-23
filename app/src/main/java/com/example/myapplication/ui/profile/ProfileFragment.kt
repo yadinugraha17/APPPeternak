@@ -121,13 +121,8 @@ class ProfileFragment : BaseFragment() {
             sessionViewModel.logout()
             toastSuccess("Logout Berhasil")
             val intent = Intent(requireActivity(), LoginActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
-            requireActivity().supportFragmentManager.popBackStack(
-                null,
-                FragmentManager.POP_BACK_STACK_INCLUSIVE
-            )
-            requireActivity().finishAndRemoveTask()
+            requireActivity().finish()
         }
 
         builder.setNegativeButton("Batal") { _, _ -> }

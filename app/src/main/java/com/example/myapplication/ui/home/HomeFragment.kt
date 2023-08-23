@@ -56,7 +56,6 @@ class HomeFragment : BaseFragment() {
             val intent = Intent (requireContext(), InseminasiBookActivity::class.java)
             startActivity(intent)
         }
-        profile()
     }
     private fun profile() {
         viewModel.profile("Bearer $TOKEN_KEY")
@@ -78,5 +77,10 @@ class HomeFragment : BaseFragment() {
                     }
                 }
             }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        profile()
     }
 }

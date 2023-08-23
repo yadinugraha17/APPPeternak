@@ -88,6 +88,7 @@
     <string name="text_judul_buku">Judul Buku</string>
     <string name="text_pengajuanib">Pengajuan\nInseminasi</string>
     <string name="text_bookinseminasi">Buku\nPeternakan</string>
+    <string name="text_inseminator">Inseminator</string>
 
     <string-array name="Provinsi">
         <item>Sulawesi Selatan</item>

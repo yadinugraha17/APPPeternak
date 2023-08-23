@@ -55,5 +55,6 @@ class DetailHistoryActivity : BaseActivity() {
             // Jika nilainya bukan "0" atau "1", tampilkan nilai sebenarnya
             binding?.tvLahir?.text = ternak.status_lahir
         }
+        binding?.tvInseminator?.text = ternak.insiminator.nama
     }
 }
