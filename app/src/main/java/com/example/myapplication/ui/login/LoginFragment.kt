@@ -20,6 +20,7 @@ import com.example.myapplication.core.session.SessionViewModel
 import com.example.myapplication.core.utils.ViewModelUserFactory
 import com.example.myapplication.databinding.FragmentLoginBinding
 import com.example.myapplication.ui.HomeActivity
+import com.example.myapplication.ui.login.LoginActivity.Companion.TOKEN_KEY
 import com.inyongtisto.myhelper.base.BaseFragment
 import com.inyongtisto.myhelper.extension.toastError
 import com.inyongtisto.myhelper.extension.toastSuccess
@@ -71,6 +72,7 @@ class LoginFragment : BaseFragment() {
                     progress.dismiss()
                     val respon = it.data
                     val token = respon!![0].token
+                    TOKEN_KEY = token
                     val login = LoginItem(token, respon[0].user_id, true)
                     val sessionRepository =
                         SessionRepository.getInstance(requireContext().datastore)
@@ -80,7 +82,6 @@ class LoginFragment : BaseFragment() {
 
                     val intent = Intent(requireContext(), HomeActivity::class.java)
                     startActivity(intent)
-                    toastSuccess(token.toString())
                 }
 
                 State.LOADING -> {

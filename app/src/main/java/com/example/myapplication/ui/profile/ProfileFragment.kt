@@ -17,6 +17,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
+import com.example.myapplication.MainActivity
 import com.example.myapplication.R
 import com.example.myapplication.core.data.api.network.State
 import com.example.myapplication.core.session.SessionRepository
