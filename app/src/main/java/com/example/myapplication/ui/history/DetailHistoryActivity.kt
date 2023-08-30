@@ -1,5 +1,7 @@
 package com.example.myapplication.ui.history
 
+import android.content.ClipboardManager
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -11,6 +13,7 @@ import com.example.myapplication.databinding.ActivityHistoryBinding
 import com.example.myapplication.ui.login.LoginViewModel
 import com.google.gson.Gson
 import com.inyongtisto.myhelper.base.BaseActivity
+import com.inyongtisto.myhelper.extension.toastSuccess
 import com.squareup.picasso.Picasso
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,6 +28,10 @@ class DetailHistoryActivity : BaseActivity() {
         root = binding?.root
         setContentView(root)
         detailhistory()
+        binding?.copy?.setOnClickListener {
+            copyTextToClipboard(binding?.tvNohp?.text.toString())
+            toastSuccess("No HP Berhasil Disalin")
+        }
     }
     private fun detailhistory () {
         val json = intent?.getStringExtra("history")
@@ -56,5 +63,11 @@ class DetailHistoryActivity : BaseActivity() {
             binding?.tvLahir?.text = ternak.status_lahir
         }
         binding?.tvInseminator?.text = ternak.insiminator.nama
+        binding?.tvNohp?.text = ternak.insiminator.no_hp
+    }
+    private fun copyTextToClipboard(text: String) {
+        val clipboard = this.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = android.content.ClipData.newPlainText("No Hp Tersalin", text)
+        clipboard.setPrimaryClip(clip)
     }
 }
