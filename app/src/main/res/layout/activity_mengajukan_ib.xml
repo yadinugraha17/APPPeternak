@@ -72,14 +72,14 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:layout_margin="@dimen/_10sdp"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-                <AutoCompleteTextView
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_rumpun"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="none"
-                    android:hint="@string/text_jenissapi"/>
+                    android:hint="@string/text_jenissemen"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <Spinner
@@ -121,7 +121,7 @@
                 style="@style/poppins_semibold_style"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/text_waktuib"
+                android:text="@string/text_waktubirahi"
                 android:textSize="@dimen/_12ssp" />
 
             <LinearLayout
@@ -139,8 +139,9 @@
                     style="@style/poppins_regular_style"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
                     android:layout_weight="1"
-                    android:text="@string/text_time" />
+                    android:text="@string/text_puncak" />
             </LinearLayout>
 
             <LinearLayout
