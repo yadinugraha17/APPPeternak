@@ -48,6 +48,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintTop_toBottomOf="@id/cv_header"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/list_notifikasi" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
