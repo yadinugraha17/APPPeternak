@@ -122,15 +122,21 @@
             android:layout_height="match_parent"
             android:layout_marginTop="@dimen/_5sdp"
             app:startIconDrawable="@drawable/baseline_transgender_24"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                 android:id="@+id/jenis_kelamin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="none"
                 android:hint="@string/text_jeniskel" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Spinner
+            android:id="@+id/sp_jeniskelamin"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/white"
+            android:layout_height="0dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"

@@ -90,6 +90,8 @@
     <string name="text_bookinseminasi">Buku\nPeternakan</string>
     <string name="text_inseminator">Inseminator</string>
     <string name="text_puncak">Puncak birahi</string>
+    <string name="text_priodebirahi">Priode Birahi</string>
+    <string name="text_tahun">Tahun</string>
 
     <string-array name="Provinsi">
         <item>Sulawesi Selatan</item>

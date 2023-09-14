@@ -71,7 +71,6 @@ class TernakActivity : BaseActivity() {
                                 )
                                 intent.putExtra("ternak", json)
                                 startActivity(intent)
-
                             }
 
                             }))

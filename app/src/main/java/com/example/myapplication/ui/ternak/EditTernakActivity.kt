@@ -56,6 +56,39 @@ class EditTernakActivity : BaseActivity() {
                     startForProfileImageResult.launch(intent)
                 }
         }
+        // Buat array adapter dengan opsi Jantan dan Betina
+        val jenisKelaminOptions = arrayOf("Pilih Jenis Kelamin", "Jantan", "Betina")
+        val arrayAdapter =
+            ArrayAdapter(this, android.R.layout.simple_spinner_item, jenisKelaminOptions)
+
+        // Atur tata letak dropdown
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding?.jenisKelamin?.setOnClickListener {
+            binding?.spJeniskelamin?.performClick()
+        }
+        // Terapkan adapter pada spinner
+        binding?.spJeniskelamin?.adapter = arrayAdapter
+        binding?.spJeniskelamin?.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    if (position != 0) {
+                        val jenisKelamin = jenisKelaminOptions[position]
+                        binding?.jenisKelamin?.setText(jenisKelamin)
+
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    TODO("Not yet implemented")
+                }
+
+            }
+
         binding?.edit?.setOnClickListener {
             ternak()
         }
@@ -249,6 +282,7 @@ class EditTernakActivity : BaseActivity() {
                             toastSuccess("Ternak Berhasil DiUbah")
                             val intent = Intent (this@EditTernakActivity, TernakActivity::class.java)
                             startActivity(intent)
+                            finish()
 
                         }
 

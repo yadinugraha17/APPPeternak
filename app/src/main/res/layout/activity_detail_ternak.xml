@@ -126,11 +126,18 @@
                     app:cardBackgroundColor="@color/shadow">
                 <TextView
                     android:id="@+id/tv_umur"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_gravity="center"
+                    android:layout_gravity="center_vertical"
                     android:text="@string/text_umur"
+                    style="@style/poppins_regular_style"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/text_tahun"
                     style="@style/poppins_regular_style"/>
                 </androidx.cardview.widget.CardView>
 

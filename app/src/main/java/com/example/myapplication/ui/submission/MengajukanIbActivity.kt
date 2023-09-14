@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Locale
 
-class MengajukanIbActivity : BaseActivity(), TimePickerFragment.DialogTimeListener {
+class MengajukanIbActivity : BaseActivity(){
     private var _binding: ActivityMengajukanIbBinding? = null
     private val binding get() = _binding
     private var root: View? = null
@@ -67,33 +67,8 @@ class MengajukanIbActivity : BaseActivity(), TimePickerFragment.DialogTimeListen
                 "com.example.myapplication.ui.dialog.DatePickerFragment"
             )
         }
-        binding?.ibTime?.setOnClickListener {
-            val timePickerFragmentOne = TimePickerFragment()
-            timePickerFragmentOne.show(supportFragmentManager, TIME_PICKER_ONCE_TAG)
-        }
     }
 
-    override fun onDialogTimeSet(tag: String?, hourOfDay: Int, minute: Int) {
-
-        // Siapkan time formatter-nya terlebih dahulu
-        val calendar = Calendar.getInstance()
-        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay)
-        calendar.set(Calendar.MINUTE, minute)
-
-        val dateFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-
-        // Set text dari textview berdasarkan tag
-        when (tag) {
-            TIME_PICKER_ONCE_TAG -> binding?.tvTime?.setText(dateFormat.format(calendar.time))
-            else -> {
-            }
-        }
-    }
-
-    companion object {
-
-        private const val TIME_PICKER_ONCE_TAG = "TimePickerOnce"
-    }
 
     private fun getTernak() {
         val arrayString = ArrayList<String>()
@@ -148,9 +123,8 @@ class MengajukanIbActivity : BaseActivity(), TimePickerFragment.DialogTimeListen
         rumpunid = intent.getIntExtra("rumpunId", 0)
         val inseminaratorId = intent.getIntExtra("inseminarator_id", 0)
         val waktu = binding?.tvDate?.text
-        val time = binding?.tvTime?.text
 
-        if (ternakid == 0 || waktu.isNullOrEmpty() || time.isNullOrEmpty()) {
+        if (ternakid == 0 || waktu.isNullOrEmpty()) {
             // Tampilkan pesan bahwa waktu dan waktu harus diisi
             toastError("Semua data harus di isi")
             return
@@ -166,7 +140,7 @@ class MengajukanIbActivity : BaseActivity(), TimePickerFragment.DialogTimeListen
             ternakid,
             rumpunid,
             outputDateString.toString(),
-            time.toString(),
+            "00:00:00",
             inseminaratorId,
             "0.0_0.0"
         )

@@ -39,7 +39,6 @@ class DetailHistoryActivity : BaseActivity() {
         binding?.tvNoregis?.text = ternak.ternak.no_regis
         binding?.tvJenisSemen?.text = ternak.rumpun.nama
         binding?.tvTglBirahi?.text = ternak.waktu_birahi
-        binding?.tvJamBirahi?.text = ternak.jam_birahi
         if (ternak.tgl_ib != null) {
             binding?.tvTglIb?.text = ternak.tgl_ib
         } else {
