@@ -13,6 +13,7 @@ import com.example.myapplication.R
 import com.example.myapplication.core.data.api.network.State
 import com.example.myapplication.core.data.api.response.item.TernakItem
 import com.example.myapplication.databinding.ActivityEditTernakBinding
+import com.example.myapplication.ui.HomeActivity
 import com.example.myapplication.ui.login.LoginActivity
 import com.example.myapplication.ui.login.LoginViewModel
 import com.github.dhaval2404.imagepicker.ImagePicker
@@ -283,7 +284,6 @@ class EditTernakActivity : BaseActivity() {
                             val intent = Intent (this@EditTernakActivity, TernakActivity::class.java)
                             startActivity(intent)
                             finish()
-
                         }
 
                         State.LOADING -> {
@@ -298,4 +298,10 @@ class EditTernakActivity : BaseActivity() {
                 }
         }
     }
+    override fun onBackPressed() {
+        val intent = Intent(this, TernakActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 }
